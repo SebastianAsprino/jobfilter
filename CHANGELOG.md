@@ -6,6 +6,13 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Agregado
+
+- **Filtros en la lista de vacantes**: por plataforma (con el número de vacantes de cada una)
+  y por antigüedad (hoy, últimos 3 días, última semana, 15 días, último mes). Viven en la URL
+  (`/?plataforma=linkedin&dias=7`), se pueden combinar y "Quitar filtros" los limpia. La marca
+  "la mejor de la empresa" se sigue calculando con todas las vacantes de la empresa.
+
 ## [0.5.1] - 2026-10-22
 
 ### Agregado

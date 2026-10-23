@@ -5,15 +5,22 @@ import { disableKeyword } from '$lib/server/features/keywords/commands/disable-k
 import { listKeywords } from '$lib/server/features/keywords/queries/list-keywords';
 import { discardPosting } from '$lib/server/features/postings/commands/discard-posting';
 import { markApplied } from '$lib/server/features/postings/commands/mark-applied';
+import { parseFilters } from '$lib/filters';
+import { countNewByPlatform } from '$lib/server/features/postings/queries/count-new-by-platform';
 import { listNewPostings } from '$lib/server/features/postings/queries/list-new-postings';
 import { getSearchProgress } from '$lib/server/features/search/queries/get-search-progress';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = () => ({
-	postings: listNewPostings(),
-	keywords: listKeywords(),
-	progress: getSearchProgress()
-});
+export const load: PageServerLoad = ({ url }) => {
+	const filters = parseFilters(url.searchParams);
+	return {
+		filters,
+		platforms: countNewByPlatform(),
+		postings: listNewPostings(filters),
+		keywords: listKeywords(),
+		progress: getSearchProgress()
+	};
+};
 
 const idFrom = async (request: Request) => Number((await request.formData()).get('id'));
 

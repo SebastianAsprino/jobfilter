@@ -2,7 +2,9 @@
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import { AGE_OPTIONS } from '$lib/filters';
 	import PlatformBadge from '$lib/PlatformBadge.svelte';
+	import { platform } from '$lib/platforms';
 	import type { SearchProgress } from '$lib/progress';
 	import { onDestroy, onMount } from 'svelte';
 
@@ -13,6 +15,8 @@
 	let timer: ReturnType<typeof setInterval> | undefined;
 
 	const platformCount = $derived(new Set(data.postings.map((p) => p.platform)).size);
+	const total = $derived(data.platforms.reduce((n, p) => n + p.total, 0));
+	const filtered = $derived(data.filters.platform !== null || data.filters.maxAgeDays !== null);
 	const overall = $derived.by(() => {
 		const total = progress.platforms.reduce((n, p) => n + p.total, 0);
 		const done = progress.platforms.reduce(
@@ -117,12 +121,40 @@
 	{/if}
 </header>
 
+<form class="filters" method="GET" data-sveltekit-keepfocus data-sveltekit-noscroll>
+	<label>
+		Plataforma
+		<select name="plataforma" onchange={(e) => e.currentTarget.form?.requestSubmit()}>
+			<option value="">Todas ({total})</option>
+			{#each data.platforms as p (p.platform)}
+				<option value={p.platform} selected={data.filters.platform === p.platform}>
+					{platform(p.platform).name} ({p.total})
+				</option>
+			{/each}
+		</select>
+	</label>
+	<label>
+		Publicada
+		<select name="dias" onchange={(e) => e.currentTarget.form?.requestSubmit()}>
+			<option value="">Cualquier fecha</option>
+			{#each AGE_OPTIONS as o (o.days)}
+				<option value={o.days} selected={data.filters.maxAgeDays === o.days}>{o.label}</option>
+			{/each}
+		</select>
+	</label>
+	{#if filtered}<a href="/" class="clear">Quitar filtros</a>{/if}
+</form>
+
 <p class="summary muted">
-	{data.postings.length} vacantes por revisar{platformCount > 1 ? ` en ${platformCount} plataformas` : ''}
+	{#if filtered}{data.postings.length} de {total} vacantes por revisar{:else}{data.postings.length} vacantes por revisar{platformCount > 1 ? ` en ${platformCount} plataformas` : ''}{/if}
 </p>
 
 {#if data.postings.length === 0}
-	<p class="empty">No hay vacantes pendientes. Presiona <strong>Buscar</strong>.</p>
+	{#if filtered}
+		<p class="empty">Ninguna vacante cumple los filtros. <a href="/">Quitar filtros</a></p>
+	{:else}
+		<p class="empty">No hay vacantes pendientes. Presiona <strong>Buscar</strong>.</p>
+	{/if}
 {:else}
 	<ul class="list">
 		{#each data.postings as p (p.id)}
@@ -301,8 +333,33 @@
 		margin-left: auto;
 		color: var(--muted);
 	}
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px 16px;
+		margin-top: 20px;
+		font-size: 13px;
+		color: var(--muted);
+	}
+	.filters label {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+	}
+	.filters select {
+		font: inherit;
+		border: 1px solid var(--border);
+		border-radius: 6px;
+		padding: 4px 8px;
+		background: var(--surface);
+		color: var(--text);
+	}
+	.clear {
+		color: var(--accent);
+	}
 	.summary {
-		margin: 20px 0 8px;
+		margin: 12px 0 8px;
 		font-size: 14px;
 	}
 	.empty {

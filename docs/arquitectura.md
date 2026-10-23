@@ -29,7 +29,8 @@ src/lib/server/
       run-log.ts, detail-cache.ts, state.ts   internos del slice
     postings/
       commands/  save-posting, mark-applied, discard-posting, retake-posting
-      queries/   list-new-postings, list-discarded, count-discarded, posting-exists
+      queries/   list-new-postings, list-discarded, count-discarded, count-new-by-platform,
+                 posting-exists
     companies/
       commands/  recalculate-blacklist, block-company, whitelist-company, unlist-company
       queries/   list-companies, count-blacklisted
@@ -103,6 +104,14 @@ lista negra) es común. Ver [plataformas.md](plataformas.md) para agregar una.
 `bun run test` corre los tests de los parsers (`*.test.ts` junto a cada adapter) contra
 respuestas reales guardadas en `fixtures/<plataforma>/`. No hacen peticiones a las
 plataformas. El CI corre los tests y la revisión de tipos en cada PR.
+
+## Filtros de la lista
+
+La lista principal se filtra por plataforma y por antigüedad con parámetros de la URL
+(`?plataforma=linkedin&dias=7`). `src/lib/filters.ts` define las opciones y `parseFilters`, que
+ignora los valores que no reconoce; `+page.server.ts` los lee y se los pasa a
+`listNewPostings`. Los filtros se aplican al final, después de calcular cuál es la mejor
+vacante de cada empresa, para que esa marca no cambie según el filtro.
 
 ## Interfaz
 
