@@ -58,8 +58,8 @@ JobFilter hace esa parte por ti. Tú solo decides a cuáles aplicar.
 | ✅ | LinkedIn | Empleos, sin login |
 | ✅ | elempleo | Integrada (Colombia) |
 | ✅ | PeakU | Integrada |
-| 🔜 | Hireline | Siguiente |
-| ⏳ | Magneto365 | Pendiente |
+| ✅ | Hireline | Integrada (Colombia y México) |
+| 🔜 | Magneto365 | Siguiente |
 | ⛔ | Torre | Requiere API key (cerró la búsqueda pública) |
 
 El estado de cada una, lo que se sabe de cómo integrarla y la guía para agregar una nueva
@@ -125,7 +125,8 @@ IA.
 - [ ] Publicaciones de LinkedIn ("estamos contratando")
 - [x] elempleo
 - [x] PeakU
-- [ ] Hireline y Magneto365
+- [x] Hireline
+- [ ] Magneto365
 - [ ] Torre, si se consigue acceso a su API
 - [ ] Lista negra para empresas confidenciales (agrupadas por descripción)
 

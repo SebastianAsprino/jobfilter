@@ -1,6 +1,6 @@
 {
 	"name": "jobfilter",
-	"version": "0.5.1",
+	"version": "0.6.0",
 	"description": "Busca vacantes en portales de empleo de Latinoamérica, filtra las empresas que reciclan ofertas y pinta cada vacante según tu perfil. Local y sin login.",
 	"license": "MIT",
 	"author": "Sebastian Asprino (https://asprino.dev)",

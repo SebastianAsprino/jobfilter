@@ -11,8 +11,8 @@
 | [elempleo](https://www.elempleo.com/co/) | ✅ Integrada | API JSON del sitio con token de la sesión anónima | — |
 | [Torre](https://torre.ai) | ⛔ Requiere API key | Cerró la búsqueda pública; API oficial en private beta | — |
 | [PeakU](https://peaku.co) | ✅ Integrada | API pública del sitio + JSON-LD de cada vacante | — |
-| [Hireline](https://hireline.io/co) | 🔜 Siguiente | HTML | Media |
-| [Magneto365](https://www.magneto365.com/co) | Pendiente | API interna o `__NEXT_DATA__`; navegador headless si no queda otra | Media-alta |
+| [Hireline](https://hireline.io/co) | ✅ Integrada | HTML renderizado en el servidor + JSON-LD de cada vacante | — |
+| [Magneto365](https://www.magneto365.com/co) | 🔜 Siguiente | API interna o `__NEXT_DATA__`; navegador headless si no queda otra | Media-alta |
 | [Talently](https://talently.tech) | Por confirmar | Parece un marketplace donde las empresas te buscan, sin listado público | — |
 
 Cada plataforma ya tiene su color reservado en `src/lib/platforms.ts`.
@@ -126,7 +126,18 @@ Sondeo hecho sin login y con un User-Agent de navegador (octubre de 2026):
     traen: se guardan sin descripción y el mapa de calor usa solo el título.
   - El estado `window.__NUXT__` es código JavaScript minificado: no se ejecuta, se usan la API
     y el JSON-LD.
-- **Hireline**: páginas `https://hireline.io/co/empleos-de-<texto>` en HTML.
+- **Hireline** (Colombia `/co`, México `/mx`): HTML renderizado en el servidor, sin login.
+  - Listado: `https://hireline.io/co/empleos?k=<texto>&l=&jk=&sal=&jd=<fecha>&page=<n>`
+    (`jd`: 1 = dos semanas, 2 = un mes, 3 = dos meses). 12 vacantes por página; en octubre
+    de 2026 había **29 activas** en Colombia, así que el adapter trae el listado completo
+    (`k=` vacío) una vez por búsqueda y filtra localmente.
+  - Cada tarjeta es un `<a class="hl-vacancy-card" href=".../empleos/<slug>/<id>">` con fecha
+    relativa ("Hace un día.", "Hace más de 30 días."), título con la empresa al final ("…
+    en Kyndryl México"), salario, resumen, ubicación ("Remoto: LATAM", "Remoto: México,
+    Colombia", "Bogota - Híbrido") y tipo de empleo.
+  - Detalle: JSON-LD `JobPosting` con título, `hiringOrganization`, `datePosted`, descripción
+    completa y `jobLocationType`. Su `applicantLocationRequirements` parece venir por defecto
+    en México aunque la tarjeta diga LATAM: para la ubicación se usa la tarjeta.
 - **Magneto365**: Next.js. `/co/empleos` responde, pero las rutas de búsqueda probadas dieron
   500. Hay que mirar las peticiones del sitio desde el navegador.
 - **Torre**: cerró su búsqueda pública (verificado en octubre de 2026).
