@@ -108,8 +108,9 @@ plataformas. El CI corre los tests y la revisión de tipos en cada PR.
 
 ## Filtros de la lista
 
-La lista principal se filtra por plataforma y por antigüedad con parámetros de la URL
-(`?plataforma=linkedin&dias=7`). `src/lib/filters.ts` define las opciones y `parseFilters`, que
+La lista principal se filtra por plataforma, antigüedad, modalidad y encaje con parámetros de
+la URL (`?plataforma=linkedin&dias=7&modalidad=remoto&encaje=naranja`). Una vacante sin
+tecnologías reconocidas no pasa ningún filtro de encaje. `src/lib/filters.ts` define las opciones y `parseFilters`, que
 ignora los valores que no reconoce; `+page.server.ts` los lee y se los pasa a
 `listNewPostings`. Los filtros se aplican al final, después de calcular cuál es la mejor
 vacante de cada empresa, para que esa marca no cambie según el filtro.

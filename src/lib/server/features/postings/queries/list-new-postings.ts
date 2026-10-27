@@ -1,7 +1,7 @@
 import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from '$lib/server/db/client';
 import { companies, postings } from '$lib/server/db/schema';
-import { isWithinDays, type ListFilters } from '$lib/filters';
+import { isWithinDays, meetsMatch, NO_FILTERS, type ListFilters } from '$lib/filters';
 import { matchPosting, type Match } from '$lib/server/features/match/queries/match-posting';
 
 export type NewPosting = {
@@ -27,7 +27,7 @@ const percent = (m: Match) => (m.score === null ? -1 : Math.round(m.score * 100)
  * La lista principal: vacantes sin marcar de empresas que no están en lista negra. Los filtros
  * se aplican al final para que "la mejor de la empresa" se calcule con todas sus vacantes.
  */
-export function listNewPostings(filters: ListFilters = { platform: null, maxAgeDays: null }): NewPosting[] {
+export function listNewPostings(filters: ListFilters = NO_FILTERS): NewPosting[] {
 	const rows = db
 		.select({
 			id: postings.id,
@@ -66,6 +66,8 @@ export function listNewPostings(filters: ListFilters = { platform: null, maxAgeD
 	return rows
 		.filter((p) => filters.platform === null || p.platform === filters.platform)
 		.filter((p) => filters.maxAgeDays === null || isWithinDays(p.publishedAt, filters.maxAgeDays))
+		.filter((p) => filters.modality === null || p.modality === filters.modality)
+		.filter((p) => filters.minMatch === null || meetsMatch(p.match.level, filters.minMatch))
 		.map((p) => {
 			const b = p.companyId === null ? undefined : best.get(p.companyId);
 			return { ...p, sameCompany: b ? { total: b.total, isBest: b.bestId === p.id } : null };

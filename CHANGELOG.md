@@ -6,6 +6,12 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Agregado
+
+- **Más filtros en la lista.** Además de plataforma y antigüedad, la lista se filtra por
+  modalidad (remoto, híbrido o presencial) y por encaje (solo verdes, o verdes y naranjas).
+  Como los demás, viven en la URL (`?modalidad=remoto&encaje=verde`).
+
 ## [0.9.0] - 2026-10-26
 
 ### Agregado
