@@ -6,6 +6,14 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Cambiado
+
+- **La lista carga más rápido.** Cada carga de la lista (y cada Apliqué o Descarto, que la
+  recarga) volvía a pasar todas las tecnologías de `skills.json` por todas las descripciones.
+  Ahora el encaje se calcula una vez por vacante y se recalcula solo si cambia `skills.json`,
+  el título o la descripción. Con 5.000 vacantes, la carga pasa de ~1,2 s a ~10 ms. El mapa
+  de calor ahora tiene tests.
+
 ## [0.9.0] - 2026-10-26
 
 ### Agregado

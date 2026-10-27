@@ -18,7 +18,8 @@ const GREEN_FROM = 0.75;
 const ORANGE_FROM = 0.4;
 const TITLE_WEIGHT = 2; // lo que dice el título es lo central del cargo
 
-let cache: { mtime: number; skills: Skill[] } | null = null;
+// matches: el resultado de cada vacante guardada, por id. Se reinicia junto con las skills.
+let cache: { mtime: number; skills: Skill[]; matches: Map<number, { key: string; match: Match }> } | null = null;
 
 function escape(text: string) {
 	return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -44,11 +45,32 @@ function loadSkills(): Skill[] {
 			return { name, known, pattern: regex(anywhere), titlePattern: regex([...anywhere, ...titleOnly]) };
 		});
 	const skills = [...build(file.tengo, true), ...build(file.no_tengo, false)];
-	cache = { mtime, skills };
+	cache = { mtime, skills, matches: new Map() };
 	return skills;
 }
 
 export function matchPosting(title: string, description: string | null): Match {
+	return computeMatch(loadSkills(), title, description);
+}
+
+type SavedPosting = { id: number; title: string; description: string | null; descriptionHash: string | null };
+
+/**
+ * Como matchPosting, pero recuerda el resultado de cada vacante guardada: la lista se vuelve a
+ * cargar con cada Apliqué o Descarto, y pasar todas las expresiones por todas las descripciones
+ * cada vez crece con la base. Se recalcula si cambia skills.json, el título o la descripción.
+ */
+export function matchSavedPosting(p: SavedPosting): Match {
+	const skills = loadSkills();
+	const key = `${p.title}\n${p.descriptionHash ?? ''}`;
+	const saved = cache!.matches.get(p.id);
+	if (saved?.key === key) return saved.match;
+	const match = computeMatch(skills, p.title, p.description);
+	cache!.matches.set(p.id, { key, match });
+	return match;
+}
+
+function computeMatch(skills: Skill[], title: string, description: string | null): Match {
 	const t = normalizeText(title);
 	const d = normalizeText(description ?? '');
 	const known: string[] = [];
@@ -56,7 +78,7 @@ export function matchPosting(title: string, description: string | null): Match {
 	let have = 0;
 	let total = 0;
 
-	for (const skill of loadSkills()) {
+	for (const skill of skills) {
 		const inTitle = !!skill.titlePattern?.test(t);
 		if (!inTitle && !skill.pattern?.test(d)) continue;
 		const weight = inTitle ? TITLE_WEIGHT : 1;
