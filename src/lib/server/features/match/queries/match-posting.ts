@@ -1,6 +1,6 @@
-import { readFileSync, statSync } from 'node:fs';
+import { statSync } from 'node:fs';
 import { normalizeText } from '$lib/server/shared/normalize';
-import { profilePath } from '$lib/server/shared/profile';
+import { loadSkillsFile, profilePath } from '$lib/server/shared/profile';
 
 export type MatchLevel = 'verde' | 'naranja' | 'rojo';
 
@@ -29,9 +29,7 @@ function loadSkills(): Skill[] {
 	const mtime = statSync(profilePath('skills.json')).mtimeMs;
 	if (cache?.mtime === mtime) return cache.skills;
 
-	const file: Record<'tengo' | 'no_tengo', Record<string, string[]>> = JSON.parse(
-		readFileSync(profilePath('skills.json'), 'utf8')
-	);
+	const file = loadSkillsFile();
 	// mismas reglas que el texto: sin tildes, minúsculas; "java" no matchea "javascript"
 	const regex = (aliases: string[]) =>
 		aliases.length

@@ -6,6 +6,14 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Agregado
+
+- **El perfil se valida al arrancar.** La app y `bun run buscar` revisan los tres archivos de
+  `profile/` y, si algo está mal armado, no arrancan y dicen qué arreglar: un JSON roto, un
+  campo que falta, un idioma que no es un código de dos letras, una variante vacía o la misma
+  variante en `tengo` y en `no_tengo` (antes contaba a la vez como que la tienes y como que
+  no). Ayuda sobre todo con los perfiles generados por IA.
+
 ## [0.9.0] - 2026-10-26
 
 ### Agregado
