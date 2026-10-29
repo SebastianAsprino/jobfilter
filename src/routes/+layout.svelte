@@ -16,6 +16,7 @@
 		<a href="/lista-negra" class:active={page.url.pathname === '/lista-negra'}>
 			Lista negra{#if data.blacklistCount}<span class="count">{data.blacklistCount}</span>{/if}
 		</a>
+		<a href="/nube" class:active={page.url.pathname === '/nube'}>Nube</a>
 	</nav>
 
 	{@render children()}
