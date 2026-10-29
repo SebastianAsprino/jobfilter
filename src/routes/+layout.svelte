@@ -7,6 +7,9 @@
 <main>
 	<nav>
 		<a href="/" class:active={page.url.pathname === '/'}>Vacantes</a>
+		<a href="/aplicadas" class:active={page.url.pathname === '/aplicadas'}>
+			Aplicadas{#if data.appliedCount}<span class="count muted-count">{data.appliedCount}</span>{/if}
+		</a>
 		<a href="/descartadas" class:active={page.url.pathname === '/descartadas'}>
 			Descartadas{#if data.discardedCount}<span class="count muted-count">{data.discardedCount}</span>{/if}
 		</a>

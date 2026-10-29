@@ -6,6 +6,15 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Agregado
+
+- **Pestaña Aplicadas.** Las vacantes marcadas con *Apliqué* desaparecían sin dejar rastro.
+  Ahora quedan en su propia pestaña, de la más reciente a la más vieja, con la fecha en que
+  aplicaste y su encaje con tu perfil. Tiene un buscador (cargo, empresa, ciudad o tecnología,
+  sin importar tildes, en el título y la descripción) y filtros por plataforma y por cuándo
+  aplicaste, que viven en la URL (`/aplicadas?q=nestjs&plataforma=getonbrd&dias=30`).
+  **Deshacer** devuelve la vacante a la lista si la marcaste sin querer.
+
 ## [0.9.0] - 2026-10-26
 
 ### Agregado
