@@ -110,6 +110,9 @@ sector"). Como no hay nombre que comparar, se agrupan por la descripción:
   consultoras o software factories que contratan seguido de verdad.
 - **Retomar** (en *Descartadas*): la vacante vuelve a tu lista y el conteo se recalcula; si la
   empresa había caído por ese descarte, sale de la lista negra.
+- **Apliqué**: la vacante pasa a *Aplicadas*, donde se busca por texto (cargo, empresa, ciudad
+  o tecnología, en el título y la descripción) y se filtra por plataforma y por cuándo
+  aplicaste. **Deshacer** la devuelve a la lista. Aplicar no cuenta para la lista negra.
 
 La lista negra se recalcula entera al terminar cada búsqueda, al descartar, al retomar y al
 quitar una empresa de una lista. Nunca toca las decisiones manuales.

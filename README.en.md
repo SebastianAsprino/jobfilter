@@ -50,6 +50,8 @@ JobFilter does that part for you. You only decide where to apply.
   starred.
 - ✋ **You're in control.** Applied, Discard, Block company, whitelist and restore discarded
   postings.
+- 📋 **Your applications.** Postings you applied to get their own tab, with search and
+  filters by platform and date.
 - 🔒 **Local, no login.** Your data stays in a SQLite file on your machine. The scraper never
   uses your account, so there's no account to get banned.
 - 🌗 **Automatic dark mode.**

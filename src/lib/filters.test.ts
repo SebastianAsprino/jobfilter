@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { isFiltered, isWithinDays, meetsMatch, NO_FILTERS, parseFilters } from './filters';
+import { isFiltered, isWithinDays, meetsMatch, NO_FILTERS, parseAppliedFilters, parseFilters } from './filters';
 
 describe('parseFilters', () => {
 	test('lee plataforma y días', () => {
@@ -64,6 +64,23 @@ describe('meetsMatch', () => {
 
 	test('sin tecnologías reconocidas no pasa ningún mínimo', () => {
 		expect(meetsMatch(null, 'naranja')).toBe(false);
+	});
+});
+
+describe('parseAppliedFilters', () => {
+	test('lee el texto junto con plataforma y días', () => {
+		expect(parseAppliedFilters(new URLSearchParams('q=nestjs&plataforma=getonbrd&dias=30'))).toEqual({
+			...NO_FILTERS,
+			platform: 'getonbrd',
+			maxAgeDays: 30,
+			text: 'nestjs'
+		});
+	});
+
+	test('un texto vacío o con solo espacios no filtra', () => {
+		expect(parseAppliedFilters(new URLSearchParams('q=')).text).toBeNull();
+		expect(parseAppliedFilters(new URLSearchParams('q=%20%20')).text).toBeNull();
+		expect(parseAppliedFilters(new URLSearchParams('')).text).toBeNull();
 	});
 });
 
