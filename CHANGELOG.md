@@ -14,6 +14,18 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
   el título o la descripción. Con 5.000 vacantes, la carga pasa de ~1,2 s a ~10 ms. El mapa
   de calor ahora tiene tests.
 
+## [0.10.0] - 2026-10-29
+
+### Agregado
+
+- **Pestaña Aplicadas.** Las vacantes marcadas con *Apliqué* desaparecían sin dejar rastro.
+  Ahora quedan en su propia pestaña, de la más reciente a la más vieja, con la fecha en que
+  aplicaste y su encaje con tu perfil. Tiene un buscador (cargo, empresa, ciudad o tecnología,
+  sin importar tildes, en el título y la descripción) y filtros por plataforma y por cuándo
+  aplicaste, que viven en la URL (`/aplicadas?q=nestjs&plataforma=getonbrd&dias=30`).
+  **Deshacer** devuelve la vacante a la lista si la marcaste sin querer.
+  Gracias a [@BrayanGuti](https://github.com/BrayanGuti) ([#16](https://github.com/SebastianAsprino/jobfilter/pull/16)).
+
 ## [0.9.0] - 2026-10-26
 
 ### Agregado
@@ -231,7 +243,8 @@ Primera versión.
   arrancar.
 - Modo oscuro automático.
 
-[Sin publicar]: https://github.com/SebastianAsprino/jobfilter/compare/v0.9.0...HEAD
+[Sin publicar]: https://github.com/SebastianAsprino/jobfilter/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/SebastianAsprino/jobfilter/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.7.0...v0.8.0

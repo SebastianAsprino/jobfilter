@@ -28,8 +28,9 @@ src/lib/server/
       adapters/                          una plataforma por archivo, con sus tests
       run-log.ts, detail-cache.ts, state.ts   internos del slice
     postings/
-      commands/  save-posting, mark-applied, discard-posting, retake-posting
-      queries/   list-new-postings, list-discarded, count-discarded, count-new-by-platform,
+      commands/  save-posting, mark-applied, unmark-applied, discard-posting, retake-posting
+      queries/   list-new-postings, list-applied, list-discarded, count-applied,
+                 count-applied-by-platform, count-discarded, count-new-by-platform,
                  posting-exists
     companies/
       commands/  recalculate-blacklist, block-company, whitelist-company, unlist-company
@@ -42,6 +43,7 @@ src/lib/server/
       queries/   match-posting
 src/routes/
   +page.svelte             lista de vacantes y botón Buscar
+  aplicadas/               vacantes aplicadas: buscador, filtros y deshacer
   descartadas/             vacantes descartadas (retomar)
   lista-negra/             lista negra y lista blanca
   api/buscar/+server.ts    arrancar la búsqueda y consultar su avance

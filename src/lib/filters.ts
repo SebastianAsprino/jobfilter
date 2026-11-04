@@ -16,6 +16,13 @@ export function parseFilters(params: URLSearchParams): ListFilters {
 	return { platform: params.get('plataforma') || null, maxAgeDays: days ?? null };
 }
 
+/** En Aplicadas, los días cuentan desde que aplicaste y además se busca por texto. */
+export type AppliedFilters = ListFilters & { text: string | null };
+
+export function parseAppliedFilters(params: URLSearchParams): AppliedFilters {
+	return { ...parseFilters(params), text: params.get('q')?.trim() || null };
+}
+
 /** Misma cuenta que la edad que se muestra en la lista: "hoy" es menos de 24 horas. */
 export function isWithinDays(publishedAt: string, maxAgeDays: number, now = Date.now()): boolean {
 	return Math.floor((now - Date.parse(publishedAt)) / 86_400_000) <= maxAgeDays;

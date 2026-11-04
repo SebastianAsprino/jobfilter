@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { isWithinDays, parseFilters } from './filters';
+import { isWithinDays, parseAppliedFilters, parseFilters } from './filters';
 
 describe('parseFilters', () => {
 	test('lee plataforma y días', () => {
@@ -21,6 +21,22 @@ describe('parseFilters', () => {
 		expect(parseFilters(new URLSearchParams('dias=5')).maxAgeDays).toBeNull();
 		expect(parseFilters(new URLSearchParams('dias=abc')).maxAgeDays).toBeNull();
 		expect(parseFilters(new URLSearchParams('dias=')).maxAgeDays).toBeNull();
+	});
+});
+
+describe('parseAppliedFilters', () => {
+	test('lee el texto junto con plataforma y días', () => {
+		expect(parseAppliedFilters(new URLSearchParams('q=nestjs&plataforma=getonbrd&dias=30'))).toEqual({
+			platform: 'getonbrd',
+			maxAgeDays: 30,
+			text: 'nestjs'
+		});
+	});
+
+	test('un texto vacío o con solo espacios no filtra', () => {
+		expect(parseAppliedFilters(new URLSearchParams('q=')).text).toBeNull();
+		expect(parseAppliedFilters(new URLSearchParams('q=%20%20')).text).toBeNull();
+		expect(parseAppliedFilters(new URLSearchParams('')).text).toBeNull();
 	});
 });
 
