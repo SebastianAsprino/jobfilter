@@ -2,7 +2,7 @@ import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from '$lib/server/db/client';
 import { companies, postings } from '$lib/server/db/schema';
 import { isWithinDays, type ListFilters } from '$lib/filters';
-import { matchPosting, type Match } from '$lib/server/features/match/queries/match-posting';
+import { matchSavedPosting, type Match } from '$lib/server/features/match/queries/match-posting';
 
 export type NewPosting = {
 	id: number;
@@ -41,14 +41,15 @@ export function listNewPostings(filters: ListFilters = { platform: null, maxAgeD
 			publishedAt: postings.publishedAt,
 			repeatTimes: postings.repeatTimes,
 			repeatFirst: postings.repeatFirst,
-			description: postings.description
+			description: postings.description,
+			descriptionHash: postings.descriptionHash
 		})
 		.from(postings)
 		.leftJoin(companies, eq(companies.id, postings.companyId))
 		.where(and(eq(postings.status, 'nueva'), sql`${companies.list} IS NOT 'negra'`))
 		.orderBy(desc(postings.publishedAt))
 		.all()
-		.map(({ description, ...p }) => ({ ...p, match: matchPosting(p.title, description) }))
+		.map(({ description, descriptionHash, ...p }) => ({ ...p, match: matchSavedPosting({ ...p, description, descriptionHash }) }))
 		// primero las más compatibles (el % que se ve en pantalla), y a igual % la más nueva,
 		// sin importar la plataforma; las que no mencionan tecnologías van al final
 		.sort((a, b) => percent(b.match) - percent(a.match));
