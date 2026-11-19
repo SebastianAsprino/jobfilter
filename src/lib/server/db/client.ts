@@ -1,4 +1,4 @@
-import { mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, renameSync, rmSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import type { BaseSQLiteDatabase } from 'drizzle-orm/sqlite-core';
 import * as schema from './schema';
@@ -6,14 +6,31 @@ import * as schema from './schema';
 // Rutas relativas a jobfilter/: `bun run dev`, `bun run dev:node` y `bun run buscar` corren ahí.
 const DB_PATH = resolve('data/jobfilter.db');
 const MIGRATIONS = resolve('drizzle');
+/** Respaldo bajado de la nube que espera al próximo arranque (features/cloud). */
+export const STAGED_RESTORE_PATH = resolve('data/restaurar.db');
 
 /** Ambos drivers son síncronos, así que el resto del código usa .all()/.get()/.run() igual. */
 export type DB = BaseSQLiteDatabase<'sync', unknown, typeof schema>;
 
 export const runtime = typeof globalThis.Bun !== 'undefined' ? 'bun' : 'node';
 
+/**
+ * La base actual queda como jobfilter.db.antes-de-restaurar. El -wal y el -shm se mueven con
+ * ella: si quedaran junto a la base nueva, SQLite les aplicaría páginas de la vieja.
+ */
+function applyStagedRestore() {
+	if (!existsSync(STAGED_RESTORE_PATH)) return;
+	for (const suffix of ['', '-wal', '-shm']) {
+		const previous = `${DB_PATH}.antes-de-restaurar${suffix}`;
+		rmSync(previous, { force: true });
+		if (existsSync(DB_PATH + suffix)) renameSync(DB_PATH + suffix, previous);
+	}
+	renameSync(STAGED_RESTORE_PATH, DB_PATH);
+}
+
 async function open(): Promise<DB> {
 	mkdirSync(dirname(DB_PATH), { recursive: true });
+	applyStagedRestore();
 
 	if (runtime === 'bun') {
 		const { Database } = await import('bun:sqlite');
