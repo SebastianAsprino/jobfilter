@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { BlockedError, createClient } from '$lib/server/shared/http';
+import { BlockedError, createClient } from '#lib/server/shared/http';
 import { linkedin, parseDetail, parseSearchPage } from './linkedin';
 
 const fixture = (name: string) => readFileSync(resolve('fixtures/linkedin', name), 'utf8');

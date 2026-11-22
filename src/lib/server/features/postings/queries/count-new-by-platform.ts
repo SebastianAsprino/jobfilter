@@ -1,6 +1,6 @@
 import { and, count, eq, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { companies, postings } from '#lib/server/db/schema';
 
 /** Cuántas vacantes por revisar hay en cada plataforma, para armar el filtro por plataforma. */
 export function countNewByPlatform(): { platform: string; total: number }[] {

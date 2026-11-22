@@ -1,6 +1,6 @@
-import { unlistCompany } from '$lib/server/features/companies/commands/unlist-company';
-import { whitelistCompany } from '$lib/server/features/companies/commands/whitelist-company';
-import { listCompanies } from '$lib/server/features/companies/queries/list-companies';
+import { unlistCompany } from '#lib/server/features/companies/commands/unlist-company';
+import { whitelistCompany } from '#lib/server/features/companies/commands/whitelist-company';
+import { listCompanies } from '#lib/server/features/companies/queries/list-companies';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = () => ({

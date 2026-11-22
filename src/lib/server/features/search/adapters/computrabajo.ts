@@ -1,6 +1,6 @@
-import { decodeEntities, htmlToText, normalizeText, samePlace } from '$lib/server/shared/normalize';
-import type { Location } from '$lib/server/shared/profile';
-import { parsePublishedDate } from '$lib/server/shared/relative-date';
+import { decodeEntities, htmlToText, normalizeText, samePlace } from '#lib/server/shared/normalize';
+import type { Location } from '#lib/server/shared/profile';
+import { parsePublishedDate } from '#lib/server/shared/relative-date';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // Páginas HTML renderizadas en el servidor, sin login. Un subdominio por país, con el

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import PlatformBadge from '$lib/PlatformBadge.svelte';
+	import PlatformBadge from '#lib/PlatformBadge.svelte';
 
 	let { data } = $props();
 

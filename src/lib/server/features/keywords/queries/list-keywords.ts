@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { keywords } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { keywords } from '#lib/server/db/schema';
 
 export type Keyword = { id: number; term: string; source: 'claude' | 'manual'; createdAt: string };
 

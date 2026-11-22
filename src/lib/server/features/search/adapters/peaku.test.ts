@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { createClient } from '$lib/server/shared/http';
+import { createClient } from '#lib/server/shared/http';
 import { parseDetail, peaku, toPosting, type Job } from './peaku';
 
 const fixture = (name: string) => readFileSync(resolve('fixtures/peaku', name), 'utf8');

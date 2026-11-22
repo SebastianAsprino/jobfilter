@@ -1,4 +1,4 @@
-import { normalizeText } from '$lib/server/shared/normalize';
+import { normalizeText } from '#lib/server/shared/normalize';
 
 const DAY = 86_400_000;
 const MIN_GAP = 7 * DAY; // más cerca es la misma publicación (o la misma en dos plataformas)

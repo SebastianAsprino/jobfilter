@@ -223,7 +223,7 @@ pegarle al sitio en cada prueba.
 Crea `src/lib/server/features/search/adapters/<plataforma>.ts`:
 
 ```ts
-import { htmlToText, samePlace } from '$lib/server/shared/normalize';
+import { htmlToText, samePlace } from '#lib/server/shared/normalize';
 import type { PlatformAdapter, RawPosting } from './types';
 
 export const miPlataforma: PlatformAdapter = {
@@ -283,7 +283,7 @@ Reglas del adapter:
   captcha pausan la plataforma 24 h).
 - Corta la paginación en cuanto llegue a vacantes anteriores a `since`.
 - Si la fecha viene como texto ("Hace 3 días", "14 de septiembre"), conviértela con
-  `parsePublishedDate` de `$lib/server/shared/relative-date` y guarda el texto original en
+  `parsePublishedDate` de `#lib/server/shared/relative-date` y guarda el texto original en
   `publishedRaw`. Si la fecha es solo un tope ("Más de 30 días") o no se entiende, marca
   `publishedApprox: true`: así no se confunde con una republicación.
 - Exporta las funciones de parseo por separado (como `parseSearchPage` y `parseDetail` en

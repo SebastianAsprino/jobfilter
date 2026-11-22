@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { createClient } from '$lib/server/shared/http';
+import { createClient } from '#lib/server/shared/http';
 import { cityId, magneto, toPosting, type Job } from './magneto';
 
 const fixture = (name: string) => JSON.parse(readFileSync(resolve('fixtures/magneto', name), 'utf8'));

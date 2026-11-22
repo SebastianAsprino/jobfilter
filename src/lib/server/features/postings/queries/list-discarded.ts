@@ -1,7 +1,7 @@
 import { desc, eq } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings } from '$lib/server/db/schema';
-import { parseReasons } from '$lib/server/features/companies/reasons';
+import { db } from '#lib/server/db/client';
+import { companies, postings } from '#lib/server/db/schema';
+import { parseReasons } from '#lib/server/features/companies/reasons';
 
 export type DiscardedPosting = {
 	id: number;

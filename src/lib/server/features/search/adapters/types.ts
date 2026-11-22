@@ -1,5 +1,5 @@
-import type { HttpClient } from '$lib/server/shared/http';
-import type { Location } from '$lib/server/shared/profile';
+import type { HttpClient } from '#lib/server/shared/http';
+import type { Location } from '#lib/server/shared/profile';
 
 export type Modality = 'remoto' | 'hibrido' | 'presencial';
 

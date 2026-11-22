@@ -1,6 +1,6 @@
-import type { HttpClient } from '$lib/server/shared/http';
-import { decodeEntities, mentionsTerm, normalizeText, samePlace } from '$lib/server/shared/normalize';
-import type { Location } from '$lib/server/shared/profile';
+import type { HttpClient } from '#lib/server/shared/http';
+import { decodeEntities, mentionsTerm, normalizeText, samePlace } from '#lib/server/shared/normalize';
+import type { Location } from '#lib/server/shared/profile';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // Talently tiene pocas vacantes activas (decenas): en vez de una búsqueda por palabra clave se

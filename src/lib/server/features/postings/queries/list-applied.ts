@@ -1,9 +1,9 @@
 import { desc, eq } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings } from '$lib/server/db/schema';
-import { isWithinDays, NO_FILTERS, type AppliedFilters } from '$lib/filters';
-import { matchPosting, type Match } from '$lib/server/features/match/queries/match-posting';
-import { normalizeText } from '$lib/server/shared/normalize';
+import { db } from '#lib/server/db/client';
+import { companies, postings } from '#lib/server/db/schema';
+import { isWithinDays, NO_FILTERS, type AppliedFilters } from '#lib/filters';
+import { matchPosting, type Match } from '#lib/server/features/match/queries/match-posting';
+import { normalizeText } from '#lib/server/shared/normalize';
 
 export type AppliedPosting = {
 	id: number;

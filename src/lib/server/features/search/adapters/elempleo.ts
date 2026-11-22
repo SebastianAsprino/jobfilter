@@ -1,6 +1,6 @@
-import type { HttpClient } from '$lib/server/shared/http';
-import { decodeEntities, htmlToText, normalizeText, samePlace } from '$lib/server/shared/normalize';
-import type { Location } from '$lib/server/shared/profile';
+import type { HttpClient } from '#lib/server/shared/http';
+import { decodeEntities, htmlToText, normalizeText, samePlace } from '#lib/server/shared/normalize';
+import type { Location } from '#lib/server/shared/profile';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // elempleo.com (solo Colombia). La página de ofertas trae un token antifalsificación y la

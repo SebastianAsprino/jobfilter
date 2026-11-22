@@ -1,7 +1,7 @@
 // Bitácora de corridas y pausas por plataforma. Uso interno del slice de búsqueda.
 import { eq, max, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { keywordCursors, platforms, runs } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { keywordCursors, platforms, runs } from '#lib/server/db/schema';
 import { DEFAULT_PAUSE_MINUTES, pauseMinutesFor } from './pause';
 
 const now = () => new Date().toISOString();

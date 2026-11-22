@@ -1,5 +1,5 @@
-import { htmlToText, normalizeText, samePlace } from '$lib/server/shared/normalize';
-import type { Location } from '$lib/server/shared/profile';
+import { htmlToText, normalizeText, samePlace } from '#lib/server/shared/normalize';
+import type { Location } from '#lib/server/shared/profile';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // API pública: https://www.getonbrd.com/api/v0/search/jobs (sin login).

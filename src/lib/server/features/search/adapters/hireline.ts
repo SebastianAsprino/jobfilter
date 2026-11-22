@@ -1,7 +1,7 @@
-import type { HttpClient } from '$lib/server/shared/http';
-import { decodeEntities, htmlToText, mentionsTerm, normalizeText, samePlace } from '$lib/server/shared/normalize';
-import type { Location } from '$lib/server/shared/profile';
-import { parsePublishedDate } from '$lib/server/shared/relative-date';
+import type { HttpClient } from '#lib/server/shared/http';
+import { decodeEntities, htmlToText, mentionsTerm, normalizeText, samePlace } from '#lib/server/shared/normalize';
+import type { Location } from '#lib/server/shared/profile';
+import { parsePublishedDate } from '#lib/server/shared/relative-date';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // Hireline tiene pocas vacantes activas por país (decenas): igual que PeakU, se trae el

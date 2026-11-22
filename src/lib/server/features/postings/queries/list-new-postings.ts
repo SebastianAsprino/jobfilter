@@ -1,8 +1,8 @@
 import { and, desc, eq, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings } from '$lib/server/db/schema';
-import { isWithinDays, meetsMatch, NO_FILTERS, type ListFilters } from '$lib/filters';
-import { matchSavedPosting, type Match } from '$lib/server/features/match/queries/match-posting';
+import { db } from '#lib/server/db/client';
+import { companies, postings } from '#lib/server/db/schema';
+import { isWithinDays, meetsMatch, NO_FILTERS, type ListFilters } from '#lib/filters';
+import { matchSavedPosting, type Match } from '#lib/server/features/match/queries/match-posting';
 
 export type NewPosting = {
 	id: number;

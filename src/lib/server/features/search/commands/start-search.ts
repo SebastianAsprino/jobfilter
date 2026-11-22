@@ -1,12 +1,12 @@
-import type { PlatformProgress, SearchProgress } from '$lib/progress';
-import { recalculateBlacklist } from '$lib/server/features/companies/commands/recalculate-blacklist';
-import { listKeywords, type Keyword } from '$lib/server/features/keywords/queries/list-keywords';
-import { savePosting } from '$lib/server/features/postings/commands/save-posting';
-import { postingExists } from '$lib/server/features/postings/queries/posting-exists';
-import { BlockedError, BudgetExhaustedError, createClient, HttpError } from '$lib/server/shared/http';
-import { detectLanguage } from '$lib/server/shared/language';
-import { mentionsTerm } from '$lib/server/shared/normalize';
-import { loadLocation, type Location } from '$lib/server/shared/profile';
+import type { PlatformProgress, SearchProgress } from '#lib/progress';
+import { recalculateBlacklist } from '#lib/server/features/companies/commands/recalculate-blacklist';
+import { listKeywords, type Keyword } from '#lib/server/features/keywords/queries/list-keywords';
+import { savePosting } from '#lib/server/features/postings/commands/save-posting';
+import { postingExists } from '#lib/server/features/postings/queries/posting-exists';
+import { BlockedError, BudgetExhaustedError, createClient, HttpError } from '#lib/server/shared/http';
+import { detectLanguage } from '#lib/server/shared/language';
+import { mentionsTerm } from '#lib/server/shared/normalize';
+import { loadLocation, type Location } from '#lib/server/shared/profile';
 import { adapters } from '../adapters';
 import type { PlatformAdapter, RawPosting, SearchContext } from '../adapters/types';
 import {
