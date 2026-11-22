@@ -1,7 +1,7 @@
 import { desc, eq } from 'drizzle-orm';
 import { db } from '$lib/server/db/client';
 import { companies, postings } from '$lib/server/db/schema';
-import { isWithinDays, type AppliedFilters } from '$lib/filters';
+import { isWithinDays, NO_FILTERS, type AppliedFilters } from '$lib/filters';
 import { matchPosting, type Match } from '$lib/server/features/match/queries/match-posting';
 import { normalizeText } from '$lib/server/shared/normalize';
 
@@ -23,7 +23,7 @@ export type AppliedPosting = {
  * título, la empresa, la ubicación y la descripción, sin tildes y con todas las palabras.
  */
 export function listApplied(
-	filters: AppliedFilters = { platform: null, maxAgeDays: null, text: null }
+	filters: AppliedFilters = { ...NO_FILTERS, text: null }
 ): AppliedPosting[] {
 	const words = filters.text ? normalizeText(filters.text).split(/\s+/).filter(Boolean) : [];
 
