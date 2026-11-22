@@ -1,8 +1,8 @@
 import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from '$lib/server/db/client';
 import { companies, postings } from '$lib/server/db/schema';
-import { isWithinDays, type ListFilters } from '$lib/filters';
-import { matchPosting, type Match } from '$lib/server/features/match/queries/match-posting';
+import { isWithinDays, meetsMatch, NO_FILTERS, type ListFilters } from '$lib/filters';
+import { matchSavedPosting, type Match } from '$lib/server/features/match/queries/match-posting';
 
 export type NewPosting = {
 	id: number;
@@ -27,7 +27,7 @@ const percent = (m: Match) => (m.score === null ? -1 : Math.round(m.score * 100)
  * La lista principal: vacantes sin marcar de empresas que no están en lista negra. Los filtros
  * se aplican al final para que "la mejor de la empresa" se calcule con todas sus vacantes.
  */
-export function listNewPostings(filters: ListFilters = { platform: null, maxAgeDays: null }): NewPosting[] {
+export function listNewPostings(filters: ListFilters = NO_FILTERS): NewPosting[] {
 	const rows = db
 		.select({
 			id: postings.id,
@@ -41,14 +41,15 @@ export function listNewPostings(filters: ListFilters = { platform: null, maxAgeD
 			publishedAt: postings.publishedAt,
 			repeatTimes: postings.repeatTimes,
 			repeatFirst: postings.repeatFirst,
-			description: postings.description
+			description: postings.description,
+			descriptionHash: postings.descriptionHash
 		})
 		.from(postings)
 		.leftJoin(companies, eq(companies.id, postings.companyId))
 		.where(and(eq(postings.status, 'nueva'), sql`${companies.list} IS NOT 'negra'`))
 		.orderBy(desc(postings.publishedAt))
 		.all()
-		.map(({ description, ...p }) => ({ ...p, match: matchPosting(p.title, description) }))
+		.map(({ description, descriptionHash, ...p }) => ({ ...p, match: matchSavedPosting({ ...p, description, descriptionHash }) }))
 		// primero las más compatibles (el % que se ve en pantalla), y a igual % la más nueva,
 		// sin importar la plataforma; las que no mencionan tecnologías van al final
 		.sort((a, b) => percent(b.match) - percent(a.match));
@@ -66,6 +67,8 @@ export function listNewPostings(filters: ListFilters = { platform: null, maxAgeD
 	return rows
 		.filter((p) => filters.platform === null || p.platform === filters.platform)
 		.filter((p) => filters.maxAgeDays === null || isWithinDays(p.publishedAt, filters.maxAgeDays))
+		.filter((p) => filters.modality === null || p.modality === filters.modality)
+		.filter((p) => filters.minMatch === null || meetsMatch(p.match.level, filters.minMatch))
 		.map((p) => {
 			const b = p.companyId === null ? undefined : best.get(p.companyId);
 			return { ...p, sameCompany: b ? { total: b.total, isBest: b.bestId === p.id } : null };

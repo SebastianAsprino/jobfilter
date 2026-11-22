@@ -45,6 +45,8 @@ JobFilter hace esa parte por ti. Tú solo decides a cuáles aplicar.
 - ⭐ **Una por empresa.** Si una empresa tiene varias vacantes en tu lista, marca la que mejor
   encaja contigo.
 - ✋ **Tú decides.** Apliqué, Descarto, Bloquear empresa, lista blanca y retomar descartadas.
+- 📋 **Tus aplicaciones.** Las vacantes a las que aplicaste quedan en su pestaña, con buscador
+  y filtros por plataforma y fecha.
 - 🔒 **Local y sin login.** Tus datos quedan en un SQLite en tu máquina. El script nunca usa
   tu cuenta, así que no hay cuenta que bloquear.
 - 🌗 **Modo oscuro** automático según tu sistema.
