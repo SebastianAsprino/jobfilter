@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { enhance, type SubmitFunction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import type { SubmitFunction } from '@sveltejs/kit';
 	import { AGE_OPTIONS, isFiltered, MATCH_OPTIONS, MODALITY_OPTIONS } from '$lib/filters';
 	import PlatformBadge from '$lib/PlatformBadge.svelte';
 	import { platform } from '$lib/platforms';

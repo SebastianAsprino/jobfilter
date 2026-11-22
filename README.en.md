@@ -11,7 +11,7 @@ machine and never logs in to any platform.
 [![CI](https://github.com/SebastianAsprino/jobfilter/actions/workflows/ci.yml/badge.svg)](https://github.com/SebastianAsprino/jobfilter/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Bun](https://img.shields.io/badge/Bun-1.4+-000?logo=bun&logoColor=white)](https://bun.sh)
-[![SvelteKit](https://img.shields.io/badge/SvelteKit-2-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-3-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-SQLite-C5F74F?logo=drizzle&logoColor=black)](https://orm.drizzle.team)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -94,7 +94,7 @@ your CV with any AI assistant. The app itself doesn't use AI.
 
 ## Tech stack
 
-SvelteKit 2 + Svelte 5, Bun, SQLite with Drizzle ORM (`bun:sqlite` on Bun, `better-sqlite3`
+SvelteKit 3 + Svelte 5, Bun, SQLite with Drizzle ORM (`bun:sqlite` on Bun, `better-sqlite3`
 on Node, picked at startup), organized as vertical slices with CQRS. See
 [docs/arquitectura.md](docs/arquitectura.md).
 

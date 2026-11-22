@@ -11,7 +11,7 @@ tu perfil. Corre en tu máquina y nunca inicia sesión en ninguna plataforma.
 [![CI](https://github.com/SebastianAsprino/jobfilter/actions/workflows/ci.yml/badge.svg)](https://github.com/SebastianAsprino/jobfilter/actions/workflows/ci.yml)
 [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
 [![Bun](https://img.shields.io/badge/Bun-1.4+-000?logo=bun&logoColor=white)](https://bun.sh)
-[![SvelteKit](https://img.shields.io/badge/SvelteKit-2-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-3-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-SQLite-C5F74F?logo=drizzle&logoColor=black)](https://orm.drizzle.team)
 [![PRs bienvenidos](https://img.shields.io/badge/PRs-bienvenidos-brightgreen.svg)](CONTRIBUTING.md)
 
