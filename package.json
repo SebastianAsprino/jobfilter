@@ -25,6 +25,10 @@
 	],
 	"private": true,
 	"type": "module",
+	"imports": {
+		"#lib": "./src/lib",
+		"#lib/*": "./src/lib/*"
+	},
 	"scripts": {
 		"dev": "bun --bun vite dev --open",
 		"dev:node": "vite dev --open",

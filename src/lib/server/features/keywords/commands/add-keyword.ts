@@ -1,5 +1,5 @@
-import { db } from '$lib/server/db/client';
-import { keywords } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { keywords } from '#lib/server/db/schema';
 
 export function addKeyword(term: string) {
 	db.insert(keywords)

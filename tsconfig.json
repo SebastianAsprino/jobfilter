@@ -3,8 +3,9 @@
 	"include": ["src", "test", "*"],
 	"exclude": ["src/service-worker"],
 	"compilerOptions": {
-		// repetidos del tsconfig que genera SvelteKit: Bun no sigue "extends": "$app/tsconfig"
-		"paths": { "$lib": ["./src/lib"], "$lib/*": ["./src/lib/*"] },
+		// TypeScript no agrega la extensión al resolver "imports" de package.json ("#lib/x" no
+		// encuentra x.ts); con paths sí la busca. Vite y Bun resuelven "imports" sin ayuda.
+		"paths": { "#lib": ["./src/lib"], "#lib/*": ["./src/lib/*"] },
 		"sourceMap": true,
 		"strict": true,
 		"types": ["$app/types", "bun"]

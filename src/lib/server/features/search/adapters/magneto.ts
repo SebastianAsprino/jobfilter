@@ -1,5 +1,5 @@
-import type { HttpClient } from '$lib/server/shared/http';
-import { htmlToText, normalizeText } from '$lib/server/shared/normalize';
+import type { HttpClient } from '#lib/server/shared/http';
+import { htmlToText, normalizeText } from '#lib/server/shared/normalize';
 import type { Modality, PlatformAdapter, RawPosting } from './types';
 
 // Magneto365 (Colombia). Las páginas de búsqueda se renderizan en el servidor y suelen dar 504,

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { AGE_OPTIONS } from '$lib/filters';
-	import PlatformBadge from '$lib/PlatformBadge.svelte';
-	import { platform } from '$lib/platforms';
+	import { AGE_OPTIONS } from '#lib/filters';
+	import PlatformBadge from '#lib/PlatformBadge.svelte';
+	import { platform } from '#lib/platforms';
 
 	let { data } = $props();
 

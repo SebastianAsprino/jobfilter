@@ -8,9 +8,7 @@ export default defineConfig({
 	plugins: [
 		sveltekit({
 			preprocess: vitePreprocess(),
-			adapter: adapter(),
-			// Kit 3 quitó $lib (ahora es #lib); se mantiene como alias para no renombrar todos los imports
-			alias: { $lib: 'src/lib' }
+			adapter: adapter()
 		})
 	],
 	// bun:sqlite lo resuelve Bun en runtime, Vite no debe intentar empaquetarlo

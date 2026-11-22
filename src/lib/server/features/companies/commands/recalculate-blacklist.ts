@@ -1,6 +1,6 @@
 import { eq, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings as postingsTable, publications } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { companies, postings as postingsTable, publications } from '#lib/server/db/schema';
 import type { Reason } from '../reasons';
 import { sameVacancies, type Posting, type Vacancy } from '../same-vacancy';
 

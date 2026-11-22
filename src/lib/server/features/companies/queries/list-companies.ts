@@ -1,6 +1,6 @@
 import { desc, eq, max, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings, publications } from '$lib/server/db/schema';
+import { db } from '#lib/server/db/client';
+import { companies, postings, publications } from '#lib/server/db/schema';
 import { parseReasons, type Reason } from '../reasons';
 
 export type ListedCompany = {

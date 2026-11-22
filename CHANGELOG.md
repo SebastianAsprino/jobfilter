@@ -32,8 +32,9 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 - **Dependencias al día.** SvelteKit 3, Vite 8 y TypeScript 7. La configuración de SvelteKit
   pasa de `svelte.config.js` a `vite.config.ts`, y el adaptador ahora es el oficial,
   `@sveltejs/adapter-bun`. TypeScript 7 revisa los tipos (`bun run check` usa `--tsgo`) y
-  TypeScript 6 queda instalado solo porque SvelteKit todavía necesita su API. Si ya tenías el
-  proyecto, corre `bun install`.
+  TypeScript 6 queda instalado solo porque SvelteKit todavía necesita su API. Los imports
+  internos pasan de `$lib/…` a `#lib/…`, porque SvelteKit 3 quitó `$lib`; si tienes una rama
+  abierta, cambia los tuyos igual. Si ya tenías el proyecto, corre `bun install`.
 
 ## [0.10.0] - 2026-10-29
 

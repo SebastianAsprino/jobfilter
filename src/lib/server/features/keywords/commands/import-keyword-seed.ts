@@ -1,6 +1,6 @@
-import { db } from '$lib/server/db/client';
-import { keywords } from '$lib/server/db/schema';
-import { loadKeywordSeed } from '$lib/server/shared/profile';
+import { db } from '#lib/server/db/client';
+import { keywords } from '#lib/server/db/schema';
+import { loadKeywordSeed } from '#lib/server/shared/profile';
 
 /** Agrega las palabras de profile/keywords.json que no existan. Las que quitaste no se reactivan. */
 export function importKeywordSeed() {

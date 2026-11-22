@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { createClient } from '$lib/server/shared/http';
+import { createClient } from '#lib/server/shared/http';
 import { hireline, parseDetail, parseListing } from './hireline';
 
 const fixture = (name: string) => readFileSync(resolve('fixtures/hireline', name), 'utf8');

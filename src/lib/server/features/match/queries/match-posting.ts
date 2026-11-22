@@ -1,6 +1,6 @@
 import { statSync } from 'node:fs';
-import { normalizeText } from '$lib/server/shared/normalize';
-import { loadSkillsFile, profilePath } from '$lib/server/shared/profile';
+import { normalizeText } from '#lib/server/shared/normalize';
+import { loadSkillsFile, profilePath } from '#lib/server/shared/profile';
 
 export type MatchLevel = 'verde' | 'naranja' | 'rojo';
 

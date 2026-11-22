@@ -1,8 +1,8 @@
 import { and, eq, sql } from 'drizzle-orm';
-import { db } from '$lib/server/db/client';
-import { companies, postings, publications } from '$lib/server/db/schema';
-import { descriptionHash, normalizeCompany, normalizeTitle } from '$lib/server/shared/normalize';
-import type { RawPosting } from '$lib/server/features/search/adapters/types';
+import { db } from '#lib/server/db/client';
+import { companies, postings, publications } from '#lib/server/db/schema';
+import { descriptionHash, normalizeCompany, normalizeTitle } from '#lib/server/shared/normalize';
+import type { RawPosting } from '#lib/server/features/search/adapters/types';
 
 function companyId(name: string | null): number | null {
 	const normalizedName = name?.trim() ? normalizeCompany(name) : '';
