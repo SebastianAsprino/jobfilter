@@ -113,3 +113,13 @@ que agregues o quites desde la app quedan guardadas en la base y no se pierden.
 
 Los tres archivos se pueden editar en cualquier momento: `skills.json` se relee en cada carga
 de la página, `location.json` en cada búsqueda y `keywords.json` al reiniciar la app.
+
+La app revisa los tres archivos al arrancar (y `bun run buscar` también). Si algo está mal
+armado (un JSON roto, un idioma escrito "español" en vez de "es", o la misma variante en
+`tengo` y en `no_tengo`) no arranca y dice qué arreglar, con todos los problemas de una vez:
+
+```
+profile/location.json tiene errores:
+- "city" tiene que ser tu ciudad, por ejemplo "Bogotá"
+- "languages": "español" no es un código de idioma de dos letras en minúscula ("es", "en")
+```

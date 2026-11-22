@@ -6,6 +6,17 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+### Agregado
+
+- **Más filtros en la lista.** Además de plataforma y antigüedad, la lista se filtra por
+  modalidad (remoto, híbrido o presencial) y por encaje (solo verdes, o verdes y naranjas).
+  Como los demás, viven en la URL (`?modalidad=remoto&encaje=verde`).
+- **El perfil se valida al arrancar.** La app y `bun run buscar` revisan los tres archivos de
+  `profile/` y, si algo está mal armado, no arrancan y dicen qué arreglar: un JSON roto, un
+  campo que falta, un idioma que no es un código de dos letras, una variante vacía o la misma
+  variante en `tengo` y en `no_tengo` (antes contaba a la vez como que la tienes y como que
+  no). Ayuda sobre todo con los perfiles generados por IA.
+
 ### Cambiado
 
 - **La lista carga más rápido.** Cada carga de la lista (y cada Apliqué o Descarto, que la
@@ -13,11 +24,6 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
   Ahora el encaje se calcula una vez por vacante y se recalcula solo si cambia `skills.json`,
   el título o la descripción. Con 5.000 vacantes, la carga pasa de ~1,2 s a ~10 ms. El mapa
   de calor ahora tiene tests.
-### Agregado
-
-- **Más filtros en la lista.** Además de plataforma y antigüedad, la lista se filtra por
-  modalidad (remoto, híbrido o presencial) y por encaje (solo verdes, o verdes y naranjas).
-  Como los demás, viven en la URL (`?modalidad=remoto&encaje=verde`).
 
 ## [0.10.0] - 2026-10-29
 
