@@ -6,16 +6,20 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
 
 ## [Sin publicar]
 
+## [0.11.0] - 2026-11-22
+
 ### Agregado
 
 - **Más filtros en la lista.** Además de plataforma y antigüedad, la lista se filtra por
   modalidad (remoto, híbrido o presencial) y por encaje (solo verdes, o verdes y naranjas).
   Como los demás, viven en la URL (`?modalidad=remoto&encaje=verde`).
+  Gracias a [@CaDelTo](https://github.com/CaDelTo) ([#17](https://github.com/SebastianAsprino/jobfilter/pull/17)).
 - **El perfil se valida al arrancar.** La app y `bun run buscar` revisan los tres archivos de
   `profile/` y, si algo está mal armado, no arrancan y dicen qué arreglar: un JSON roto, un
   campo que falta, un idioma que no es un código de dos letras, una variante vacía o la misma
   variante en `tengo` y en `no_tengo` (antes contaba a la vez como que la tienes y como que
   no). Ayuda sobre todo con los perfiles generados por IA.
+  Gracias a [@CaDelTo](https://github.com/CaDelTo) ([#19](https://github.com/SebastianAsprino/jobfilter/pull/19)).
 
 ### Cambiado
 
@@ -24,6 +28,12 @@ Todos los cambios relevantes del proyecto se documentan aquí. El formato sigue
   Ahora el encaje se calcula una vez por vacante y se recalcula solo si cambia `skills.json`,
   el título o la descripción. Con 5.000 vacantes, la carga pasa de ~1,2 s a ~10 ms. El mapa
   de calor ahora tiene tests.
+  Gracias a [@CaDelTo](https://github.com/CaDelTo) ([#18](https://github.com/SebastianAsprino/jobfilter/pull/18)).
+- **Dependencias al día.** SvelteKit 3, Vite 8 y TypeScript 7. La configuración de SvelteKit
+  pasa de `svelte.config.js` a `vite.config.ts`, y el adaptador ahora es el oficial,
+  `@sveltejs/adapter-bun`. TypeScript 7 revisa los tipos (`bun run check` usa `--tsgo`) y
+  TypeScript 6 queda instalado solo porque SvelteKit todavía necesita su API. Si ya tenías el
+  proyecto, corre `bun install`.
 
 ## [0.10.0] - 2026-10-29
 
@@ -254,7 +264,8 @@ Primera versión.
   arrancar.
 - Modo oscuro automático.
 
-[Sin publicar]: https://github.com/SebastianAsprino/jobfilter/compare/v0.10.0...HEAD
+[Sin publicar]: https://github.com/SebastianAsprino/jobfilter/compare/v0.11.0...HEAD
+[0.11.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/SebastianAsprino/jobfilter/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/SebastianAsprino/jobfilter/compare/v0.8.0...v0.8.1
