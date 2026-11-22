@@ -48,6 +48,8 @@ encaje = tecnologías pedidas que tienes / tecnologías pedidas reconocidas
   publicación, sin importar la plataforma. Las grises van al final.
 - Si una empresa tiene varias vacantes en tu lista, la de mejor encaje lleva **★ la mejor de
   N**. Si todas son rojas, ninguna lleva ★.
+- El encaje de cada vacante se calcula una vez y queda en memoria: se vuelve a calcular solo
+  si editas `skills.json` o cambia el título o la descripción de la vacante.
 
 Ejemplos con un perfil fullstack TypeScript: "Java + Angular" sale naranja (50%), "Kotlin /
 Java" sale rojo (14%), "Node.js / TypeScript / React / AWS" sale verde (94%).
